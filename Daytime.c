@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
         exit(EXIT_FAILURE);
     }
     
-    memset(&serveraddr, 0, sizeof(serveraddr));  // Use memset instead of bzero
+    memset(&serveraddr, 0, sizeof(serveraddr));  
     serveraddr.sin_family = AF_INET;
     serveraddr.sin_port = htons(13);
     
@@ -37,7 +37,7 @@ int main(int argc, char **argv) {
     }
     
     while ((n = read(sockfd, recvline, MAXLINE)) > 0) {
-        recvline[n] = '\0';  // Use '\0' for null terminator
+        recvline[n] = '\0'; 
         if (fputs(recvline, stdout) == EOF) {
             perror("fputs error");
             exit(EXIT_FAILURE);
