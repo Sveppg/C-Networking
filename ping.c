@@ -5,11 +5,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <arpa/inet.h>
-#include <errno.h>
 #include <stdlib.h>
 #include <netinet/ip_icmp.h>
 #include <netdb.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #if BYTE_ORDER == LITTLE_ENDIAN
 # define ODDBYTE(v)	(v)
@@ -74,6 +74,11 @@ int main(int argc, char **argv) {
     struct sockaddr_in source = { .sin_family = AF_INET };
     struct sockaddr_in dst;
 
+    if(argc != 2){
+        printf("Usage: %s <IP-Adress> \n", argv[0]);
+        _exit(EXIT_FAILURE);
+        //exit;
+    }
     /* We first try to make a UDP connection
      * on port 1025 to the destination host
      * so that we can set the source IP correctly
