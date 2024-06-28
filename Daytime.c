@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
     serveraddr.sin_port = htons(13);
     
     if (inet_pton(AF_INET, argv[1], &serveraddr.sin_addr) <= 0) {
-        perror("inet_pton error");
+        perror("Couldn't convert IPv4 or IPv6 Adress into binarCouldn't convert IPv4 or IPv6 Adress into binary");
         exit(EXIT_FAILURE);
     }
     
@@ -49,6 +49,6 @@ int main(int argc, char **argv) {
         exit(EXIT_FAILURE);
     }
 
-    close(sockfd);  // Close the socket
+    close(sockfd);  // Close socket
     return 0;
 }
