@@ -18,6 +18,9 @@
 # define ODDBYTE(v) htons((unsigned short)(v) << 8)
 #endif
 
+/*
+ *	
+ */
 char *pr_addr(void *sa, socklen_t salen)
 {
     static char buffer[4096] = "";
