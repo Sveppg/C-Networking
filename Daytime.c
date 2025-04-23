@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
     struct sockaddr_in serveraddr;
 
     if (argc != 2) {
-        fprintf(stderr, "usage: %s <IP-Address>\n", argv[0]);
+        perror("usage: %s <IP-Address>\n");
         exit(EXIT_FAILURE);
     }
     

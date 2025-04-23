@@ -12,17 +12,15 @@
 
 #if BYTE_ORDER == LITTLE_ENDIAN
 # define ODDBYTE(v) (v)
-#elif BYTE_ORDER == BIG_ENDIAN
+#elif BYTE_ORDER == BIG_ENDIAN          
 # define ODDBYTE(v) ((unsigned short)(v) << 8)
 #else
 # define ODDBYTE(v) htons((unsigned short)(v) << 8)
-#endif
+#endif      
 
-/*
- *	
- */
+
 char *pr_addr(void *sa, socklen_t salen)
-{
+{                                       
     static char buffer[4096] = "";
     static struct sockaddr_storage last_sa = { 0 };
     static socklen_t last_salen = 0;
@@ -47,7 +45,7 @@ unsigned short in_cksum(const unsigned short *addr, register int len, unsigned s
 
     while (nleft > 1) {
         sum += *w++;
-        nleft -= 2;
+        nleft -= 2;                                 
     }
 
     if (nleft == 1)
@@ -56,7 +54,7 @@ unsigned short in_cksum(const unsigned short *addr, register int len, unsigned s
     sum = (sum >> 16) + (sum & 0xffff);
     sum += (sum >> 16);
     answer = ~sum;
-    return answer;
+    return answer;                      
 }
 
 int main(int argc, char **argv) {
@@ -72,14 +70,14 @@ int main(int argc, char **argv) {
     memset((char *)&dst, 0, sizeof(dst));
     dst.sin_family = AF_INET;
     if (inet_aton(argv[1], &dst.sin_addr) == 0) {
-        fprintf(stderr, "The first argument must be an IP address\n");
+        fprintf(stderr, "The first argument must be an IP-Address\n");
         exit(1);
     }
     dst.sin_port = htons(1025);
 
     sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_ICMP);
     if (sock == -1) {
-        perror("Error creating socket");
+        perror("-Error creating socket-");
         exit(1);
     }
 
